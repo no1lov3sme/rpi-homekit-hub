@@ -2,10 +2,14 @@ import fetch from "node-fetch";
 import fs from "fs";
 const TOKEN_PATH = "./token.json";
 const FLAG_PATH = "./script.flag";
+const CREDENTIALS_PATH = "./credentials.json";
+
+const text = await fs.readFileSync(CREDENTIALS_PATH, "utf8");
+const {client_id, client_secret, home_id, username, password} = JSON.parse(text);
 
 let {access_token, refresh_token, expires_in, date} = {};
-if (await fs.access("./token.json", fs.constants.R_OK | fs.constants.W_OK, () => {})) {
-    const text = await fs.readFile("./token.json", () => {});
+if (await fs.accessSync(TOKEN_PATH, fs.constants.R_OK | fs.constants.W_OK)) {
+    const text = await fs.readFileSync(TOKEN_PATH, "utf8");
     const content = JSON.parse(text);
     access_token = content.access_token;
     refresh_token = content.refresh_token;
