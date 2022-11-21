@@ -1,0 +1,5 @@
+/node_modules/
+/.idea/
+token.json
+script.flag
+credentials.json
