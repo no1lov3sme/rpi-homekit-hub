@@ -153,6 +153,7 @@ else if (Date.now() > date + expires_in * 1000) {
 
 if (process.env?.mode) {
     await setAwaySate(process.env?.mode);
+    await new Promise((resolve) => setTimeout(resolve, 2500));
 }
 await getAwayState();
 
